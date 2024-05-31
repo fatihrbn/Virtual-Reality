@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <!-- Asset texture project -->
+      <a-assets>
+        <img id="ground" src="img/green-grass-mat-background.jpg" />
+        <img id="sky" src="img/white-cloud-blue-sky.jpg" />
+      </a-assets>
+
+      <a-sky src="#sky"></a-sky>
+
+      <a-plane
+        material="color: #fff; src: #ground; repeat: 1000 1000; normal-map: #ground; normal-texture-repeat: 1000 1000"
+        rotation="-90 0 0 "
+        scale="5000 5000 1"
+      ></a-plane>
+
+      <!-- Membuat kotak -->
+      <a-box
+        color="#ABCDEF"
+        width="2.5"
+        height="3"
+        depth="0.4"
+        position="0 1 4"
+      >
+        <!-- Child object dan posisi relatif -->
+        <a-circle
+          position="0 0 1"
+          color="#333333"
+          side="double"
+          rotation="45 0 0"
+          scale="2 2 1"
+        ></a-circle> </a-box
+      >s
+      <!-- Membuat tabung -->
+      <a-cylinder
+        src="img/wood-texture.jpg"
+        height="2"
+        radius="2"
+        segments-radial="8"
+        side="double"
+      ></a-cylinder>
+    </a-scene>
+  </body>
+</html>
