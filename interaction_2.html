@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/super-hands@^3.0.3/dist/super-hands.min.js"></script>
+    <title>Interaksi lanjutan user dengan object virtual</title>
+  </head>
+  <body>
+    <a-scene>
+      <a-entity progressive-controls></a-entity>
+
+      <a-entity>
+        <a-camera></a-camera>
+        <a-entity
+          sphere-collider="objects: a-box"
+          super-hands
+          hand-controls="hand: left"
+        ></a-entity>
+        <a-entity
+          sphere-collider="objects: a-box"
+          super-hands
+          hand-controls="hand: right"
+        ></a-entity>
+      </a-entity>
+
+      <!-- camera sebagai cursor -->
+      <!-- <a-camera>
+        <a-entity position="0 0 -1">
+          <a-cursor color="#FAFAFA"></a-cursor>
+        </a-entity>
+      </a-camera> -->
+
+      <!-- bola -->
+      <a-sphere
+        id="merah"
+        color="#AA0000"
+        position="-1.5 0 -7"
+        clickable
+        event-set__start="_event: grab-start; _target: #hijau; material.color: #AA0000"
+        event-set__end="_event: grab-end; _target: #hijau; material.color: #00AA00"
+      ></a-sphere>
+
+      <!-- kotak -->
+      <a-box
+        id="hijau"
+        color="#00AA00"
+        position="-1.5 3 -7"
+        grabbable
+        event-set__start="_event: grab-start; _target: #biru; material.color: #00AA00"
+        event-set__end="_event: grab-end; _target: #biru; material.color: #00AAFF"
+      ></a-box>
+
+      <!-- cone -->
+      <a-cone
+        id="kuning"
+        color="#FFAA00"
+        position="1.5 3 -7"
+        draggable
+        event-set__drag="_event: drag-drop; _target: #biru; material.color: #FFAA00"
+      ></a-cone>
+
+      <!-- tabung -->
+      <a-cylinder
+        id="biru"
+        color="#00AAFF"
+        position="1.5 0 -7"
+        droppable
+      ></a-cylinder>
+    </a-scene>
+  </body>
+</html>
