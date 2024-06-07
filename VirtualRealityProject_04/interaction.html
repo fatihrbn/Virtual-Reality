@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
+    <title>Interaksi user dengan object virtual</title>
+  </head>
+  <body>
+    <a-scene background="color: #000">
+      <!-- cursor VR -->
+      <!-- <a-camera>
+        <a-cursor></a-cursor>
+      </a-camera> -->
+
+      <!-- raycast cursor -->
+      <!-- <a-entity position="0 2 0">
+        <a-cursor
+          color="#FAFAFA"
+          raycaster="showLine: true"
+          
+        ></a-cursor>
+      </a-entity> -->
+
+      <!-- camera sebagai cursor -->
+      <a-camera>
+        <a-entity position="0 0 -1">
+          <a-cursor color="#FAFAFA"></a-cursor>
+        </a-entity>
+      </a-camera>
+
+      <!-- Box1 -->
+      <a-box
+        id="box1"
+        color="#AA0000"
+        position="-2 0 -7"
+        event-set__enter="_event: mouseenter; material.color: #ABABAB"
+        event-set__leave="_event: mouseleave; material.color: #AA0000"
+        event-set__tarcol="_event: click; material.color: #AA0000"
+        event-set__tarvis="_event: click; visible: false"
+      ></a-box>
+      <!-- Box2 -->
+      <a-box
+        id="box2"
+        color="#AA0000"
+        position="0 0 -7"
+        event-set__tarcol="_event: click; _target: #box1; material.color: #00AAFF"
+      ></a-box>
+      <!-- Box3 -->
+      <a-box
+        id="box3"
+        color="#AA0000"
+        position="2 0 -7"
+        event-set__tarvis="_event: click; _target: #box1 visible: true"
+      ></a-box>
+    </a-scene>
+  </body>
+</html>
