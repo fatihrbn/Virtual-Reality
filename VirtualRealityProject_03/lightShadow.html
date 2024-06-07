@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <title>Light and Shadows</title>
+  </head>
+  <body>
+    <a-scene>
+      <!-- Assets -->
+      <a-assets>
+        <img src="assets/textures/floor.jpg" id="floor" />
+        <img src="assets/textures/Firefox_logo.png" id="firefox" />
+        <a-asset-item id="room" src=""></a-asset-item>
+      </a-assets>
+
+      <!-- Langit -->
+      <a-sky color="#212121"></a-sky>
+
+      <!-- Lantai -->
+      <a-plane
+        src="#floor"
+        rotation="-90 0 0"
+        scale="10000 10000 1"
+        repeat="1000 1000"
+      ></a-plane>
+
+      <!-- Kamera -->
+      <a-entity position="0 0 5">
+        <a-camera></a-camera>
+      </a-entity>
+
+      <!-- Ruangan 1 | x=4 y=5 z=14 -->
+      <a-entity gltf-model="#room"></a-entity>
+
+      <!-- Logo firefox -->
+      <a-image src="#firefox" scale="2 2 1" position="-2 3 -2.49"></a-image>
+
+      <!-- Panel -->
+      <a-box color="#E0E0E0" scale="5 0.1 1" position="0 4 0"></a-box>
+
+      <!-- Box1 -->
+      <a-box
+        color="#FFEB3B"
+        scale="0.5 0.5 0.5"
+        position="-1 1 0"
+        shadow="cast: true"
+        shader="flat"
+        animation="property: rotation; to 0 360 0; loop: true; dur: 5000; easing: linear"
+      ></a-box>
+
+      <!-- Box2 -->
+      <a-box
+        id="orange-box"
+        color="#FF5722"
+        scale="0.5 0.5 0.5"
+        position="1 1 0"
+        shadow="cast: true"
+        animation_1="property: rotation; to 0 360 0; loop: true; dur: 5000; easing: linear"
+        animation_2="property: postiion; to: 1 1 -2; loop: true; dir: alternate; dur: 5000; easing: easeInOutCubic"
+      ></a-box>
+
+      <!-- Point light -->
+      <a-entity
+        light="type: point; intensity: 0.8; distance: 10; castShadow: true"
+        position="0 2 1.5"
+        animation="property: light.intensity; from: 0.8; to: 0; loop: true; dir: alternate; dur: 5000; easing: easeInPutCubic"
+      ></a-entity>
+
+      <!-- Spot light -->
+      <a-entity
+        light="type: spot; target: #orange-box; color: #C40070; angle: 30; penumbra: 0.1; castShadow:true"
+        position="0 3 1"
+      ></a-entity>
+    </a-scene>
+  </body>
+</html>
